@@ -15,6 +15,5 @@ jobs:
       run: source fonts.sh
     - name: Release
       uses: softprops/action-gh-release@master
-      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: AppleFontsNerdPatched.7z

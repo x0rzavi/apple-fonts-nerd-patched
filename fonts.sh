@@ -58,8 +58,8 @@ apple_fonts () {
 	#sf_compact
 	sf_mono
 	#ny
-	
-  
+
+  rm !("$directory/tmpdir/AppleFonts/SF-Mono-Regular.otf")	
   docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/out:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
   7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/out
   rm -rf *.dmg NYFonts SFCompactFonts SFProFonts SFMonoFonts

@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v3
     - name: Build
       run: source fonts.sh
     - name: Release
-      uses: softprops/action-gh-release@master
-      tag_name: Apple-Fonts-Nerd-Patched
+      uses: softprops/action-gh-release@v1
       with:
         files: AppleFontsNerdPatched.7z
+        tag_name: Apple-Fonts-Nerd-Patched

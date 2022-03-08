@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Description: Install my favourite fonts
-# Dependencies: fontforge, aria2
+# Description: Automatically patch Apple Fonts with nerdfonts patcher
+# Dependencies: 7z, aria2
 
 # Dependencies
 sudo apt update 
@@ -53,23 +53,15 @@ apple_fonts () {
 		cd ..	
 	}
 
-	#sf_pro
-	#sf_compact
+	sf_pro
+	sf_compact
 	sf_mono
-	#ny
-
-  rm $directory/tmpdir/AppleFonts/*Semibold*
-  rm $directory/tmpdir/AppleFonts/*Bold*
-  rm $directory/tmpdir/AppleFonts/*Light*
-  rm $directory/tmpdir/AppleFonts/*Heavy*
-  rm $directory/tmpdir/AppleFonts/*Medium*
-  rm $directory/tmpdir/AppleFonts/SF-Mono-RegularItalic.otf
-  set +e
-  docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
-  set -e
-  7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/AppleFontsNerdPatched
-  rm -rf *.dmg NYFonts SFCompactFonts SFProFonts SFMonoFonts
-  
+	ny
+	
+	set +e
+	docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
+	set -e
+	7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/AppleFontsNerdPatched
 }
 
 apple_fonts

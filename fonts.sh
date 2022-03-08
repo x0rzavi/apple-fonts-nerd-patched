@@ -67,7 +67,7 @@ apple_fonts () {
   rm $directory/tmpdir/AppleFonts/*Medium*
   rm $directory/tmpdir/AppleFonts/SF-Mono-RegularItalic.otf
   docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/out:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
-  7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/out
+  7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/out/
   rm -rf *.dmg NYFonts SFCompactFonts SFProFonts SFMonoFonts
   ls $directory
   

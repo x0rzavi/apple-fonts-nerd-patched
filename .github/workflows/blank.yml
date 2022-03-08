@@ -1,0 +1,13 @@
+name: linux
+on: 
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@master
+    - run: source fonts.sh

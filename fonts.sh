@@ -59,6 +59,7 @@ apple_fonts () {
 	sf_mono
 	#ny
 
+  shopt -s extglob
   rm !("$directory/tmpdir/AppleFonts/SF-Mono-Regular.otf")	
   docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/out:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
   7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/out

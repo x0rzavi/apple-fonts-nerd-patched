@@ -59,6 +59,7 @@ apple_fonts () {
 	sf_mono
 	#ny
 
+  set +e
   rm $directory/tmpdir/AppleFonts/*Semibold*
   rm $directory/tmpdir/AppleFonts/*Bold*
   rm $directory/tmpdir/AppleFonts/*Light*

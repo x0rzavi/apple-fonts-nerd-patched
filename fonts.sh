@@ -60,11 +60,10 @@ apple_fonts () {
 	#ny
 	
   
-  docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/out:/out nerdfonts/patcher -c --careful --no-progressbars
+  docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/out:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
   7z a AppleFontsNerdPatched.7z $directory/tmpdir/out
-	rm -rf *.dmg NYFonts SFCompactFonts SFProFonts SFMonoFonts
+  rm -rf *.dmg NYFonts SFCompactFonts SFProFonts SFMonoFonts
   ls $directory/tmpdir/
-  
   
 }
 

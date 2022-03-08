@@ -10,12 +10,11 @@ sudo apt install p7zip-full aria2 -y
 # Variables
 directory=$(pwd)
 
-mkdir -p $directory/tmpdir
-mkdir -p $directory/tmpdir/out
-cd $directory/tmpdir
-
 apple_fonts () {
+	mkdir -p $directory/tmpdir
+	mkdir -p $directory/tmpdir/AppleFontsNerdPatched
 	mkdir -p $directory/tmpdir/AppleFonts
+	cd $directory/tmpdir
 
 	sf_pro () {
 		aria2c -x16 "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
@@ -66,9 +65,9 @@ apple_fonts () {
   rm $directory/tmpdir/AppleFonts/*Medium*
   rm $directory/tmpdir/AppleFonts/SF-Mono-RegularItalic.otf
   set +e
-  docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/out:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
+  docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
   set -e
-  7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/out/*
+  7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/AppleFontsNerdPatched
   rm -rf *.dmg NYFonts SFCompactFonts SFProFonts SFMonoFonts
   
 }

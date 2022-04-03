@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Description: Automatically patch Apple Fonts with nerdfonts patcher
+# Description: Automatically patch Apple's SF Mono Fonts selectively with nerdfonts patcher
 # Dependencies: 7z, aria2
 
 # Dependencies
@@ -22,7 +22,7 @@ apple_fonts () {
 		cd SFProFonts
 		7z x 'SF Pro Fonts.pkg'
 		7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFonts
+		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
 		cd ..
 	}
 	sf_compact () {
@@ -31,7 +31,7 @@ apple_fonts () {
 		cd SFCompactFonts
 		7z x 'SF Compact Fonts.pkg'
 		7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFonts
+		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
 		cd ..
 	}	
 	sf_mono () {
@@ -49,14 +49,14 @@ apple_fonts () {
 		cd NYFonts
 		7z x 'NY Fonts.pkg'
 		7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFonts
+		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
 		cd ..	
 	}
 
-	sf_pro
-	sf_compact
-	sf_mono
-	ny
+	sf_pro		# no nerd patches
+	sf_compact	# no nerd patches
+	sf_mono		# nerd patched
+	ny		# no nerd patches
 	
 	set +e
 	docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher -c --careful --no-progressbars --quiet

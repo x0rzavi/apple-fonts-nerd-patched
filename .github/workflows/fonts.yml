@@ -7,15 +7,20 @@ defaults:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      
     - name: Build
       run: source fonts.sh
+      
+    - name: Tags
+      run: echo "fileTag=$(date +%d-%m-%Y-%H-%M)" >> $GITHUB_ENV
+      
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: AppleFontsNerdPatched.7z
         name: Apple Fonts Nerd Patched
-        tag_name: v1
+        tag_name: ${{ env.fileTag }}

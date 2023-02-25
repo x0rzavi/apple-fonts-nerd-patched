@@ -59,7 +59,7 @@ apple_fonts () {
 	ny		# no nerd patches
 	
 	set +e
-	docker run -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher -c --careful --no-progressbars --quiet
+	docker run --rm -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher --no-progressbars --quiet
 	set -e
 	7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/AppleFontsNerdPatched
 }

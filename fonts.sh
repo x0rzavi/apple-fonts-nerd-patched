@@ -12,7 +12,7 @@ directory=$(pwd)
 
 apple_fonts () {
 	mkdir -p $directory/tmpdir
-	mkdir -p $directory/tmpdir/AppleFontsNerdPatched
+	# mkdir -p $directory/tmpdir/AppleFontsNerdPatched
 	mkdir -p $directory/tmpdir/AppleFonts
 	cd $directory/tmpdir
 
@@ -22,16 +22,16 @@ apple_fonts () {
 		cd SFProFonts
 		7z x 'SF Pro Fonts.pkg'
 		7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
+		mv Library/Fonts/* $directory/tmpdir/AppleFonts
 		cd ..
 	}
 	sf_arabic () {
 		aria2c -x16 "https://devimages-cdn.apple.com/design/resources/download/SF-Arabic.dmg"
 		7z x 'SF-Arabic.dmg'
-    	cd SFArabicFonts
-    	7z x 'SF Arabic Fonts.pkg'
-    	7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
+    		cd SFArabicFonts
+    		7z x 'SF Arabic Fonts.pkg'
+    		7z x 'Payload~'
+		mv Library/Fonts/* $directory/tmpdir/AppleFonts
 		cd ..
 	}
 	sf_compact () {
@@ -40,7 +40,7 @@ apple_fonts () {
 		cd SFCompactFonts
 		7z x 'SF Compact Fonts.pkg'
 		7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
+		mv Library/Fonts/* $directory/tmpdir/AppleFonts
 		cd ..
 	}
 	ny () {
@@ -49,7 +49,7 @@ apple_fonts () {
 		cd NYFonts
 		7z x 'NY Fonts.pkg'
 		7z x 'Payload~'
-		mv Library/Fonts/* $directory/tmpdir/AppleFontsNerdPatched
+		mv Library/Fonts/* $directory/tmpdir/AppleFonts
 		cd ..	
 	}
 	sf_mono () {
@@ -65,11 +65,12 @@ apple_fonts () {
 	sf_pro		# no nerd patches
 	sf_arabic	# no nerd patches
 	sf_compact	# no nerd patches
-	ny			# no nerd patches
-	sf_mono		# nerd patched
+	ny		# no nerd patches
+	sf_mono		# no nerd patched
 	
-	set +e && docker run --rm -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher --no-progressbars --quiet && set -e
-	7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/AppleFontsNerdPatched
+	# set +e && docker run --rm -v $directory/tmpdir/AppleFonts:/in -v $directory/tmpdir/AppleFontsNerdPatched:/out nerdfonts/patcher --no-progressbars --quiet && set -e
+	# 7z a $directory/AppleFontsNerdPatched.7z $directory/tmpdir/AppleFontsNerdPatched
+	7z a $directory/AppleFonts.7z $directory/tmpdir/AppleFonts
 }
 
 apple_fonts

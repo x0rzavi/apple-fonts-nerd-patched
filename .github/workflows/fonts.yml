@@ -21,6 +21,6 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: AppleFontsNerdPatched.7z
-        name: Apple Fonts Nerd Patched
+        files: AppleFonts.7z
+        name: Apple Fonts Packed
         tag_name: ${{ env.fileTag }}
